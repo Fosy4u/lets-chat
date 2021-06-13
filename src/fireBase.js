@@ -1,3 +1,4 @@
+//connecting the app to the firebase to handle authentication
 import firebase from "firebase/app";
 import "firebase/auth";
 

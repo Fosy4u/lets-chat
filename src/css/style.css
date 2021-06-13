@@ -79,7 +79,6 @@
 
 #action-btn::before {
   content: "";
-  /* background abs relative to action-btn */
   position: absolute;
   background: black;
   border-radius: 5px;
@@ -88,7 +87,6 @@
   right: 100%;
   top: 0;
   z-index: -1;
-  -webkit-transition: right 0.3s ease-in;
 }
 
 #action-btn:hover::before {
@@ -139,15 +137,11 @@
   flex-direction: column;
   position: relative;
   width: 100%;
+
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
 }
-.outerContainer {
-  background-image: linear-gradient(#40a9ff, #096dd9);
 
-  display: flex;
-  flex-direction: row;
-}
 .title {
   text-align: center;
   color: white;
@@ -161,31 +155,26 @@
   align-items: center;
   justify-content: center;
 }
-.image {
-  display: flex;
-  flex: 2;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  margin-left: 5%;
+
+.outerContainer {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/221808/sky.jpg");
+  height: 100vh;
+  overflow: hidden;
 }
 .loginCard {
-  position: relative;
-  flex: 1;
-  margin-top: 10%;
-  margin-bottom: 10%;
-  padding-top: 36px;
-  padding-bottom: 30px;
-  width: 20%;
+  position: absolute;
+  top: 30%;
+  bottom: 30%;
+  left: 30%;
+  right: 30%;
+  width: 40%;
+  height: 45%;
   text-align: center;
   background-color: white;
   border-radius: 22px;
-  margin-right: 10%;
+
   align-items: center;
   justify-content: center;
-}
-.loginImage {
-  margin-left: 1%;
-  width: 80%;
 }
 
 .loginButton {
@@ -221,5 +210,30 @@
   top: calc(50vh - 22px);
 }
 
-@media (min-width: 320px) and (max-width: 500px) {
+@media (min-width: 50px) and (max-width: 500px) {
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
+  .outerContainer {
+    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/221808/sky.jpg");
+    height: 100vh;
+    overflow: hidden;
+  }
+  .loginCard {
+    position: absolute;
+    top: 30%;
+    bottom: 30%;
+    left: 10%;
+    right: 20%;
+    width: 80%;
+    height: 35%;
+    text-align: center;
+    background-color: white;
+    border-radius: 22px;
+
+    align-items: center;
+    justify-content: center;
+  }
 }

@@ -1,11 +1,14 @@
+//login screen
 import react from "react";
 import ReactDOM from "react-dom";
 import Wave from "react-wavify";
-import "../css/./lets-gist.css";
+import "../css/./style.css";
 import { useHistory } from "react-router-dom";
 
 const HomePage = () => {
+  //using history to handle navigation
   const history = useHistory();
+  //handling login button - pushing the router to login page
   const handleButton = () => {
     history.push("/login");
   };
@@ -34,7 +37,7 @@ const HomePage = () => {
         </h1>
         <h3>A Real-Time Chat App</h3>
         <button id="action-btn" onClick={handleButton}>
-          Get Started!
+          Get Started! / Login
         </button>
       </div>
     </div>

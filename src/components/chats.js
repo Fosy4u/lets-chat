@@ -1,3 +1,4 @@
+//chat screen
 import react, { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useHistory } from "react-router-dom";
@@ -5,7 +6,7 @@ import { ChatEngine } from "react-chat-engine";
 import { auth } from "../fireBase";
 import { useAuth } from "../contexts/authContext";
 import axios from "axios";
-import "../css/./lets-gist.css";
+import "../css/./style.css";
 const Chats = () => {
   //getting user from the authContext provider which stores users are values
   const { user } = useAuth();
@@ -23,10 +24,12 @@ const Chats = () => {
   };
 
   useEffect(() => {
+    //if no user, example when a user logs out, return to home page
     if (!user) {
       history.push("/");
       return;
     }
+    // if user, make get the user from chat engine and set loading false
     axios
       .get("https://api.chatengine.io/users/", {
         headers: {
@@ -38,6 +41,7 @@ const Chats = () => {
       .then(() => {
         setloading(false);
       })
+      //error in getting user means user does not exist in chat engine, therefore, create the user
       .catch(() => {
         let formdata = new FormData();
         formdata.append("email", user.email);
@@ -60,12 +64,12 @@ const Chats = () => {
           });
       });
   }, [user, history]);
-
+  //handling loging out
   const handleSignout = async () => {
     await auth.signOut();
     history.push("/");
   };
-
+  //if no user, retun loading
   if (!user) return "loading....";
   return (
     <div className="chatPage">

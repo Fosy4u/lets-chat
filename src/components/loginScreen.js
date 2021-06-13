@@ -1,8 +1,8 @@
-import react, { useEffect } from "react";
-
+//login screen
+import React, { useEffect } from "react";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
-import "../css/./lets-gist.css";
-import image from "../icon/homepage.jpg";
+import "../css/./style.css";
+
 import firebase from "firebase";
 import { auth } from "../fireBase";
 import { useAuth } from "../contexts/authContext";
@@ -10,20 +10,19 @@ import { useHistory } from "react-router-dom";
 const LoginScreen = () => {
   //getting user from the authContext provider which stores users are values
   const { user } = useAuth();
+  //using history to handle navigation
   const history = useHistory();
   useEffect(() => {
+    //if user, it means login or creation of account is succesful, then navigate to chat screen
     if (user) {
       history.push("/chats");
     }
-  }, user);
+  }, [user]);
   return (
     <div className="loginScreen">
-      <div className="title">
-        <h1>Lets-Gist</h1>
-      </div>
       <div className="outerContainer">
-        <div className="image">
-          <img src={image} alt="homepage icon" className="loginImage" />
+        <div className="title">
+          <h1>Lets-Gist</h1>
         </div>
         <div className="loginCard">
           <h2>Hello! Welcome to Lets-Gist</h2>
