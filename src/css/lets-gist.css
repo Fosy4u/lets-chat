@@ -5,7 +5,95 @@
     Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
     Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 }
+/* Home Page */
+#home {
+  background-color: transparent;
+  position: relative;
+  width: 100%;
+  z-index: 0;
+  font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
+}
+#home .wave {
+  height: 85vh;
+  z-index: 5;
+  margin: 0;
+}
 
+.wave {
+  transform: rotate(180deg);
+  left: 0;
+}
+.intro h1 {
+  /* text-align: left; */
+  font-size: 2.7rem;
+  font-weight: 600;
+  text-align: center;
+  font-size: 2.4rem;
+}
+.intro h3 {
+  font-size: 1.8rem;
+}
+
+.intro {
+  position: absolute;
+  top: 40vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  /* -ms-transform: translateY(-50%);
+  transform: translateY(-50%); */
+  padding-left: 7%;
+  padding-right: 5%;
+  width: 60%;
+}
+
+.intro h1,
+.intro h3 {
+  line-height: 1.7;
+}
+
+.highlight {
+  font-style: normal;
+
+  color: white;
+}
+#action-btn {
+  margin-top: 10px;
+  position: relative;
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 2px;
+  background: none;
+  color: white;
+  border-radius: 5px;
+  text-transform: uppercase;
+  outline: 0;
+  z-index: 1;
+}
+
+#action-btn:hover {
+  color: white;
+}
+
+#action-btn::before {
+  content: "";
+  /* background abs relative to action-btn */
+  position: absolute;
+  background: black;
+  border-radius: 5px;
+  bottom: 0;
+  left: 0;
+  right: 100%;
+  top: 0;
+  z-index: -1;
+  -webkit-transition: right 0.3s ease-in;
+}
+
+#action-btn:hover::before {
+  right: 0;
+}
 /* Chats Page */
 
 .chatsPage {
@@ -49,6 +137,10 @@
 .loginScreen {
   display: flex;
   flex-direction: column;
+  position: relative;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
 }
 .outerContainer {
   background-image: linear-gradient(#40a9ff, #096dd9);

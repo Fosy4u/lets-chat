@@ -5,6 +5,7 @@ import { ChatEngine } from "react-chat-engine";
 import { auth } from "../fireBase";
 import { useAuth } from "../contexts/authContext";
 import axios from "axios";
+import "../css/./lets-gist.css";
 const Chats = () => {
   //getting user from the authContext provider which stores users are values
   const { user } = useAuth();
@@ -69,7 +70,7 @@ const Chats = () => {
   return (
     <div className="chatPage">
       <div className="navBar">
-        <div className="logoTab"> Lets Chat</div>
+        <div className="logoTab"> Lets Gist</div>
         <div className="signoutTab" onClick={handleSignout}>
           {" "}
           {user.displayName} Sign Out
