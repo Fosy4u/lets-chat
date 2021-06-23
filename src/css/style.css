@@ -55,7 +55,6 @@
 
 .highlight {
   font-style: normal;
-
   color: white;
 }
 #action-btn {
@@ -94,7 +93,7 @@
 }
 .footer {
   display: flex;
-  padding-top: 3%;
+
   align-items: center;
   justify-content: center;
   text-align: center;

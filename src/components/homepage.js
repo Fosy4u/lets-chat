@@ -18,8 +18,8 @@ const HomePage = () => {
         className="wave"
         fill="url(#gradient)"
         options={{
-          height: 10,
-          amplitude: 45,
+          height: 5,
+          amplitude: 55,
           speed: 0.1,
           points: 5,
         }}
