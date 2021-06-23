@@ -35,10 +35,13 @@ const HomePage = () => {
         <h1>
           <em className="highlight">Lets-Gist</em>
         </h1>
-        <h3>A Real-Time Chat App</h3>
+        <h3>Test Version of A Real-Time Chat App</h3>
         <button id="action-btn" onClick={handleButton}>
           Get Started! / Login
         </button>
+      </div>
+      <div className="footer">
+        <p>Developer || Foster Ogwudu</p>
       </div>
     </div>
   );

@@ -92,6 +92,13 @@
 #action-btn:hover::before {
   right: 0;
 }
+.footer {
+  display: flex;
+  padding-top: 3%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 /* Chats Page */
 
 .chatsPage {
