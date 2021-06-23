@@ -2,11 +2,12 @@
 import react, { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useHistory } from "react-router-dom";
-import { ChatEngine } from "react-chat-engine";
+import { ChatEngine, sendMessage } from "react-chat-engine";
 import { auth } from "../fireBase";
 import { useAuth } from "../contexts/authContext";
 import axios from "axios";
 import "../css/./style.css";
+
 const Chats = () => {
   //getting user from the authContext provider which stores users are values
   const { user } = useAuth();
@@ -15,6 +16,7 @@ const Chats = () => {
   const history = useHistory();
   //setting loading state
   const [loading, setloading] = useState(true);
+  const [userID, setUserID] = useState("");
 
   //to get files/images
   const getFiles = async (url) => {
@@ -63,11 +65,102 @@ const Chats = () => {
               .catch((error) => console.log(error));
           });
       });
+    askPermission();
   }, [user, history]);
   //handling loging out
   const handleSignout = async () => {
     await auth.signOut();
     history.push("/");
+  };
+  //asking permision for notification
+  const askPermission = async () => {
+    console.log("permision request");
+    return await Notification.requestPermission().then((response) => {
+      if (response === "granted") notificationHandler();
+      console.log("permission granted");
+    });
+  };
+
+  //function to check if there is service worker in the browser
+  //performs subscription action if there is
+  const notificationHandler = () => {
+    console.log("initialising push");
+    if ("serviceWorker" in navigator) {
+      sendSubscription().catch((err) => console.log(err));
+    } else {
+      alert(
+        "This web browser does not support notification. Hence you wont be able to receive notification on new messages"
+      );
+    }
+  };
+  //Register Service worker (SW), Register Push, send notification
+  async function sendSubscription() {
+    console.log("registering SW");
+    //Register SW
+    const register = await navigator.serviceWorker
+      .register("/worker.js", {
+        scope: "/",
+      })
+      .then(function (register) {
+        console.log("worked", register);
+      })
+      .catch(function (err) {
+        console.log("error");
+      });
+    console.log("SW registered");
+
+    //Register Push
+    console.log("Registering Push");
+    navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
+      console.log("ready");
+      serviceWorkerRegistration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(
+          process.env.REACT_APP_publicVapidKey
+        ),
+      });
+    });
+  }
+
+  //fuction to convert the Vapid keys for push notification action from base64 string to a Uint8Array to pass into the subscribe call
+  function urlBase64ToUint8Array(base64String) {
+    const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+    const base64 = (base64String + padding)
+      .replace(/-/g, "+")
+      .replace(/_/g, "/");
+
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+
+    for (let i = 0; i < rawData.length; ++i) {
+      outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
+  }
+
+  const sendPush = (sender) => {
+    console.log(sender);
+    if (sender !== user.displayName)
+      navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
+        console.log(serviceWorkerRegistration.pushManager.getSubscription());
+        serviceWorkerRegistration.pushManager
+          .getSubscription()
+          .then((subscription) => {
+            const message = `new message from ${user.displayName}`;
+            console.log(message);
+            const push = [subscription, message];
+            console.log(push);
+            fetch(`${process.env.REACT_APP_PUSH_URL}`, {
+              method: "POST",
+              body: JSON.stringify(push),
+              headers: {
+                "content-type": "application/json",
+              },
+            });
+          });
+      });
+
+    console.log("push sent");
   };
   //if no user, retun loading
   if (!user) return "loading....";
@@ -75,9 +168,9 @@ const Chats = () => {
     <div className="chatPage">
       <div className="navBar">
         <div className="logoTab"> Lets Gist</div>
-        <div className="signoutTab" onClick={handleSignout}>
-          {" "}
-          {user.displayName} Sign Out
+        <div className="signoutTab">
+          <div onClick={notificationHandler}>{user.displayName}</div>
+          <div onClick={handleSignout}>Sign Out</div>
         </div>
       </div>
       <pre>{process.env.React_APP_LETS_TALK_CHAT_ENGINE_ID}</pre>
@@ -86,6 +179,7 @@ const Chats = () => {
         projectID={process.env.REACT_APP_LETS_CHAT_ENGINE_ID}
         userName={user.displayName}
         userSecret={user.uid}
+        onNewMessage={(chatId, message) => sendPush(message.sender.username)}
       />
     </div>
   );
