@@ -1,10 +1,11 @@
 /* Global */
-
+@import url(//fonts.googleapis.com/css?family=Montserrat:400:300:500:600);
 * {
   font-family: Avenir, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
     Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 }
+
 /* Home Page */
 #home {
   background-color: transparent;
@@ -46,6 +47,7 @@
   padding-left: 7%;
   padding-right: 5%;
   width: 60%;
+  font-family: "Montserrat", sans-serif;
 }
 
 .intro h1,
@@ -109,26 +111,34 @@
 }
 
 .navBar {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  height: 66px;
+  height: 5%;
+
   background-color: #002766;
 }
 
 .logoTab {
-  position: absolute;
-  left: 22px;
-  top: 12px;
-  font-size: 32px;
+  justify-content: flex-start;
+  font-size: 25px;
+  font-weight: 700;
+  color: white;
+}
+.displayName {
+  font-size: 20px;
   font-weight: 700;
   color: white;
 }
 
-.signoutTab {
-  position: absolute;
-  top: 22px;
-  right: 22px;
+.rightTab {
+  display: flex;
+  align-content: space-between;
   color: white;
   cursor: pointer;
+}
+.settings {
+  width: 25%;
 }
 
 ::-webkit-scrollbar {
@@ -136,70 +146,160 @@
   background: transparent; /*  just make scrollbar invisible */
 }
 
-/* Login Page */
-
-.loginScreen {
+/* Edit User Page */
+.editPage {
+  background: linear-gradient(
+    60deg,
+    rgba(84, 58, 183, 1) 0%,
+    rgba(0, 172, 193, 1) 100%
+  );
   display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
+  font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
+}
+.editTitle {
+  color: white;
+  margin-left: 5%;
+}
 
+.content img {
+  width: 30%;
+  border-radius: 50%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10%;
+  align-items: stretch;
+  justify-content: space-between;
+}
+.editButton button {
+  position: relative;
+  font-size: 1rem;
+  border: none;
+  height: 10%;
+  width: 50%;
+  margin: 2px 5px;
+  border-radius: 25px;
+  background-color: #3a5fbb;
+  color: #ffffff;
+}
+.delete {
+  color: red;
+  position: relative;
+  font-size: 1rem;
+  border: none;
+  height: 10%;
+  width: 50%;
+  margin: 2px 5px;
+  border-radius: 25px;
+  background-color: #3a5fbb;
+}
+.pointer {
+  cursor: pointer;
+}
+
+/* Login / Registration Page */
+
+.loginScreen {
+  background: linear-gradient(
+    60deg,
+    rgba(84, 58, 183, 1) 0%,
+    rgba(0, 172, 193, 1) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
 }
 
 .title {
+  position: relative;
   text-align: center;
   color: white;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 10%,
-    rgba(0, 212, 255, 1) 100%
-  );
-  align-items: center;
-  justify-content: center;
 }
 
 .outerContainer {
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/221808/sky.jpg");
   height: 100vh;
   overflow: hidden;
 }
 .loginCard {
   position: absolute;
-  top: 30%;
+  top: 10%;
   bottom: 30%;
   left: 30%;
   right: 30%;
   width: 40%;
-  height: 45%;
+  height: 88%;
   text-align: center;
   background-color: white;
   border-radius: 22px;
-
   align-items: center;
   justify-content: center;
 }
-
+.content input {
+  width: 80%;
+  padding: 8px;
+  margin: 10px;
+  height: 32px;
+  font-size: 1rem;
+  border: none;
+  box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 20%);
+  border-radius: 25px;
+  outline: none;
+  text-align: center;
+}
+.loginOption {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.loginText {
+  font-size: 14px;
+}
 .loginButton {
   cursor: pointer;
   color: white;
-  padding: 12px;
+  text-align: center;
   border-radius: 8px;
-  display: inline-block;
+  display: flex;
+
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
-.facebook {
-  background-color: #3b5998;
+.login-btn {
+  font-size: 1rem;
+  border: none;
+  height: 44px;
+  width: 40%;
+  margin: 10px 10px;
+  border-radius: 25px;
+  background-color: #3a5fbb;
+  color: #ffffff;
+  cursor: pointer;
 }
-
-.google {
-  background-color: #4285f4;
-  color: white;
+.signUp {
+  border: none;
+  height: 30px;
+  width: 20%;
+  margin-left: 2%;
+  border-radius: 25px;
+  background-color: #3a5fbb;
+  color: #ffffff;
+  cursor: pointer;
 }
-
 #loading-container {
   position: absolute;
   top: 0px;
@@ -215,31 +315,109 @@
   left: calc(50vw - 33px);
   top: calc(50vh - 22px);
 }
+.registerDescription {
+  margin-top: 15%;
+}
+.text-error {
+  color: red;
+  font-size: 10px;
+}
 
-@media (min-width: 50px) and (max-width: 500px) {
+/*Phone login/registration screen*/
+@media (min-width: 50px) and (max-width: 768px) {
   body {
     width: 100%;
     height: 100%;
   }
 
-  .outerContainer {
-    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/221808/sky.jpg");
-    height: 100vh;
-    overflow: hidden;
-  }
   .loginCard {
     position: absolute;
-    top: 30%;
+    top: 10%;
+    font-size: 1rem;
     bottom: 30%;
-    left: 10%;
-    right: 20%;
+    left: 20%;
+    right: 30%;
+    width: 60%;
+    height: 95%;
+  }
+  .loginButton {
+    cursor: pointer;
+    color: white;
+    padding: 0px;
+    border-radius: 8px;
+  }
+  .login-btn {
+    font-size: 1rem;
+    border: none;
+    height: 44px;
+    width: 40%;
+    margin: 20px 10px;
+    border-radius: 25px;
+    background-color: #3a5fbb;
+    color: #ffffff;
+  }
+  .content input {
     width: 80%;
-    height: 35%;
+    padding: 8px;
+    margin: 10px;
+    height: 32px;
+    font-size: 1rem;
+    border: none;
+    box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 20%);
+    border-radius: 25px;
+    outline: none;
     text-align: center;
-    background-color: white;
-    border-radius: 22px;
+  }
+  .loginText {
+    font-size: 13px;
+  }
+  .registerDescription {
+    margin-top: 30%;
+  }
+}
+/*Phone user edit screen*/
+@media (min-width: 50px) and (max-width: 768px) {
+  .editTitle h1 {
+    color: white;
+    margin-left: 5%;
+    font-size: 17px;
+  }
 
-    align-items: center;
+  .profilePic {
+    display: flex;
+    padding-top: 3%;
+    padding-bottom: 2%;
     justify-content: center;
+  }
+  .profilePic img {
+    width: 30%;
+    border-radius: 50%;
+  }
+  .editContainer {
+    display: flex;
+    position: relative;
+    background-color: white;
+    justify-content: center;
+    margin-left: 25%;
+    margin-right: 25%;
+    height: 60%;
+    border-radius: 10px;
+    align-items: center;
+  }
+  .editContainer input {
+    width: 100%;
+    height: 30px;
+    position: relative;
+
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-family: "Gotham SSm A", "Gotham SSm B", sans-serif;
+    font-weight: 400;
+    color: #282828;
+    outline: none;
+    box-shadow: 0px 4px 20px 0px transparent;
+    transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out,
+      0.1s padding ease-in-out;
+    -webkit-appearance: none;
   }
 }

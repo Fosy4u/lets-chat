@@ -12,11 +12,13 @@
 		"firebase-tools": "^9.12.1",
 		"react": "^17.0.2",
 		"react-chat-engine": "^1.10.0",
+		"react-confirm-alert": "^2.7.0",
 		"react-dom": "^17.0.2",
 		"react-motion-ui-pack": "^0.10.3",
 		"react-router": "^5.2.0",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "4.0.3",
+		"react-tilt": "^0.1.4",
 		"react-wavify": "^1.5.2",
 		"web-vitals": "^1.1.2"
 	},

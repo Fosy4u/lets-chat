@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
       setUser(user);
       setloading(false);
       if (user) {
-        history.push("/chats");
+      
       }
     });
   }, [user, history]);
